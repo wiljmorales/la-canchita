@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "POST",
 					body: JSON.stringify(requestBody),
 					headers: {
-					"Content-Type": "application/json",
+					"Content-Type":"application/json"
 				  	},
 				});
 				return response.status === 201;
