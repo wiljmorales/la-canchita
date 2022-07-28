@@ -51,6 +51,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         return true;
       },
 
+      caimaneras: async (requestBody) => {
+        const response = await fetch(`${process.env.BACKEND_URL}/api/caimaneras`, {
+          method: "POST",
+          body: JSON.stringify(requestBody),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) throw Error("Hubo un problema con la creacion");
+        if (response.status === 401) {
+          throw "Chequee sus datos";
+        } else if (response.status === 400) {
+          throw "revise el payload de su solicitud...";
+        }
+        
+        return true;
+      
+      },
+
       getMessage: async () => {
         try {
           // fetching data from the backend

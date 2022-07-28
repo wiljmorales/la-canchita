@@ -61,3 +61,22 @@ def protected():
     user = User.query.get(current_user_id)
     
     return jsonify({"id": user.id, "email": user.email }), 200
+
+
+#.  //// metodo post de caimaneras (falta arreglar flux)
+@api.route("/caimaneras", methods=["POST"])
+def create_caimanera():
+    body = request.json
+    datetime = body.get('datetime', None)
+    location = body.get('location', None)
+    creator = body.get('creator', None)
+    if datetime is None or location is None or creator is None: 
+        return jsonify("param missing in payload"),400
+        new_caimanera = Caimaneras(datetime, location, creator.id)
+        # para id de caimanera y de usuario
+        creator_inscription = Inscription(new_caimanera.id, user.id("recibe el token"))
+        #linea 75 dentro del user.id debe ser del user que recibe token por jwt
+        return (new_caimanera.serialize()),201
+
+        #falta relacionar con el usuario basado en el token
+        #se usa con la funcion get jwt identity

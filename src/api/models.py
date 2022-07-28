@@ -26,3 +26,50 @@ class User(db.Model):
         "is_active": self.is_active
         # do not serialize the password, its a security breach
         }
+
+
+#  //// Modelo de Caimaneras
+class Caimaneras(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    datetime = db.Column(db.String(120), unique=True, nullable=False)
+    location = db.Column(db.String(120), unique=False, nullable=False)
+    creator = db.Column(db.Integer, db.ForeignKey("user.id"))
+
+    def __init__(self, datetime, location, creator):
+        self.datetime = datetime
+        self.location = location
+        self.creator = creator
+        db.session.add(self)
+        db.session.commit()
+
+    def serialize(self):
+        return {
+			"id":self.id,
+            "datetime":self.datetime,
+            "location":self.location,
+            "creator":self.creator}
+
+
+
+
+
+
+
+#  //// Modelo de Inscripciones
+class Inscripciones(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, db.ForeignKey("caimaneras.id"))
+    player_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+
+    def __init__(self, event_id, player_id):
+        self.event_id = event_id
+        self.player_id = player_id
+        db.session.add(self)
+        db.session.commit()
+    
+    def serialize(self):
+        return {
+            "event_id":self.event_id,
+            "player_id":self.player_id
+        }
+        
