@@ -4,11 +4,13 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
-    def __init__(self, email, password):
+    def __init__(self,name, email, password):
+        self.name = name
         self.email = email
         self.password = password
         self.is_active = False      
@@ -22,6 +24,7 @@ class User(db.Model):
     def serialize(self):
         return {
         "id": self.id,
+        "name": self.name,
         "email": self.email,
         "is_active": self.is_active
         # do not serialize the password, its a security breach
@@ -31,7 +34,7 @@ class User(db.Model):
 #  //// Modelo de Caimaneras
 class Caimaneras(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    datetime = db.Column(db.String(120), unique=True, nullable=False)
+    datetime = db.Column(db.String(120), unique=False, nullable=False)
     location = db.Column(db.String(120), unique=False, nullable=False)
     creator = db.Column(db.Integer, db.ForeignKey("user.id"))
 

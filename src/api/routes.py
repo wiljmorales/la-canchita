@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Caimaneras, Inscripciones
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -26,13 +26,14 @@ def handle_hello():
 @api.route('/users', methods=['POST'])
 def handle_users():
     body = request.json
+    name = body.get('name', None)
     email = body.get('email', None)
     password = body.get('password', None)
-    if email is None or password is None: 
+    if name is None or email is None or password is None: 
         return jsonify(
         "revise el payload de su solicitud"
         ), 400
-    new_user = User(email, password)
+    new_user = User(name, email, password)
     return jsonify(new_user.serialize()), 201
 
 @api.route('/token', methods=['POST'])
@@ -65,18 +66,16 @@ def protected():
 
 #.  //// metodo post de caimaneras (falta arreglar flux)
 @api.route("/caimaneras", methods=["POST"])
+@jwt_required()
 def create_caimanera():
     body = request.json
     datetime = body.get('datetime', None)
     location = body.get('location', None)
-    creator = body.get('creator', None)
-    if datetime is None or location is None or creator is None: 
+    if datetime is None or location is None: 
         return jsonify("param missing in payload"),400
-        new_caimanera = Caimaneras(datetime, location, creator.id)
-        # para id de caimanera y de usuario
-        creator_inscription = Inscription(new_caimanera.id, user.id("recibe el token"))
-        #linea 75 dentro del user.id debe ser del user que recibe token por jwt
-        return (new_caimanera.serialize()),201
+    current_user_id = get_jwt_identity()
+    new_caimanera = Caimaneras(datetime, location, current_user_id)
+    creator_inscripciones = Inscripciones(new_caimanera.id, current_user_id)
+    return (new_caimanera.serialize()),201
 
-        #falta relacionar con el usuario basado en el token
-        #se usa con la funcion get jwt identity
+       # listo esta manguangua

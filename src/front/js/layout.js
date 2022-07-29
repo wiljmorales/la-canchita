@@ -11,7 +11,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { SignUp } from "./pages/SignUp";
 import { Login } from "./pages/Login";
-import {Caimaneras} from ".pages/Caimaneras";
+import { Caimaneras } from "./pages/Caimaneras";
 
 //create your first component
 const Layout = () => {

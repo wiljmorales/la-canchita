@@ -59,14 +59,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         });
-        if (!response.ok) throw Error("Hubo un problema con la creacion");
         if (response.status === 401) {
-          throw "Chequee sus datos";
+          throw new Error ("Chequee sus datos");
         } else if (response.status === 400) {
-          throw "revise el payload de su solicitud...";
+          throw new Error ("revise el payload de su solicitud...");
         }
-        
         return true;
+      // en caso de que sea necesario el single, se hace return de caimanera id
       
       },
 

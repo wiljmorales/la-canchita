@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const SignUp = (props) => {
     const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
@@ -17,6 +18,16 @@ export const SignUp = (props) => {
                 </div>
                 <div className="row">
                     <form>
+                    <input
+                            type="text"
+                            name="name"
+                            className="form-control my-1"
+                            value={name}
+                            placeholder="name"
+                            onChange={(e) => setName(e.target.value)}
+                        />
+
+
                         <input
                             type="text"
                             name="email"
@@ -41,8 +52,9 @@ export const SignUp = (props) => {
                 className="btn btn-success"
                 onClick={async (e) => {
                     const success = await actions.signUp({
-                    email: email,
-                    password: password,
+                        name: name,
+                        email: email,
+                        password: password,
                     });
                     if (success) {
                     navigate("/login");
