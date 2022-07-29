@@ -20,6 +20,22 @@ const getState = ({ getStore, getActions, setStore }) => {
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
+      getUserPosition: () => {
+        console.log("ayuda")
+        navigator.geolocation.getCurrentPosition(function(position) {
+          let lat = position.coords.latitude;
+          let long = position.coords.longitude;
+          console.log("lat,long",lat,long)
+          setStore({
+            userPosition: {
+              latitude: lat,
+              longitude: long
+            }
+          })
+        }, function(error){
+          console.log("error",error)
+        });
+      },
 
       signUp: async (requestBody) => {
         const response = await fetch(`${process.env.BACKEND_URL}/api/users`, {
