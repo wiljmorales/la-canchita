@@ -6,7 +6,14 @@ export const Navbar = () => {
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+				<img
+					src="https://i.imgur.com/wy3b33A.png"
+					className="w-50 content-center"
+					style={{
+						maxWidth: "300px",
+						maxHeight: "120px"
+					}}
+				/>
 				</Link>
 				<div className="ml-auto">
 					<Link to="/demo">

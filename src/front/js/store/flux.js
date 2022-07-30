@@ -14,6 +14,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
         },
       ],
+      userPosition:{
+        latitude: undefined,
+        longitude: undefined,
+      }
     },
     actions: {
       // Use getActions to call a function within a fuction

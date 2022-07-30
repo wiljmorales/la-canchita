@@ -15,7 +15,7 @@ export const Caimaneras = () => {
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-6">
                         <div className="cardregistro rounded-3">
-                            <img src="https://img.freepik.com/foto-gratis/accion-jugador-futbol-estadio_1150-14598.jpg?w=826&t=st=1659114587~exp=1659115187~hmac=bd3f69295c5c7c4470b751375cb891ca6f5f5a9141b21797db1dc95cf4d9db70"
+                            <img src="https://t3.ftcdn.net/jpg/04/32/82/80/240_F_432828076_oObmCMDFy2p3s6pT3Z0AZPatmE74T817.jpg"
                                 className="w-100 height-150px" 
                                 alt="Sample photo">
                             </img>
