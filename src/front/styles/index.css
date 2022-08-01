@@ -2,37 +2,32 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 .portrait-signup {
-    background-image: url("https://img.freepik.com/vector-gratis/fondo-naranja-abstracto-lineas-efecto-semitono_1017-32107.jpg?t=st=1659070690~exp=1659071290~hmac=d03a57039b02505b5fdbd5be69fba151f2a1948dcdaa2a2a978430114b702a84");
-    background-size: contain;
-    width: auto;
-    object-fit: contain;
-    align-content: center;
-    background-repeat: no-repeat;
-    
+  background-image: url("https://img.freepik.com/vector-gratis/fondo-naranja-abstracto-lineas-efecto-semitono_1017-32107.jpg?t=st=1659070690~exp=1659071290~hmac=d03a57039b02505b5fdbd5be69fba151f2a1948dcdaa2a2a978430114b702a84");
+  background-size: contain;
+  width: auto;
+  object-fit: contain;
+  align-content: center;
+  background-repeat: no-repeat;
 }
 
-
 .portrait-login {
-    background-image: url("https://img.freepik.com/foto-gratis/fondo-hierba-verde_1372-324.jpg?w=826&t=st=1659077794~exp=1659078394~hmac=4fd5e159bfea42df1090c208342d94e205ffb9207bf959cec8cdfc5eba2e26d5");
-    background-size: contain;
-    background-repeat: no-repeat;
-    object-fit: contain;
-    width: auto;
-    align-content: center;
-
+  background-image: url("https://img.freepik.com/foto-gratis/fondo-hierba-verde_1372-324.jpg?w=826&t=st=1659077794~exp=1659078394~hmac=4fd5e159bfea42df1090c208342d94e205ffb9207bf959cec8cdfc5eba2e26d5");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  align-content: center;
 }
 
 .fondocaimaneras {
-    background-color: #5887FF;
+  background-color: #5887ff;
 }
 
 .cardregistro {
-    border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
 }
 
 .cardregistro img {
-    height: 100px;
-    width: auto;
-    
+  height: 100px;
+  width: auto;
 }
