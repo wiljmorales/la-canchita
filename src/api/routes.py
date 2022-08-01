@@ -69,12 +69,13 @@ def protected():
 @jwt_required()
 def create_caimanera():
     body = request.json
+    name = body.get('name',None)
     datetime = body.get('datetime', None)
     location = body.get('location', None)
-    if datetime is None or location is None: 
+    if datetime is None or location is None or name is None: 
         return jsonify("param missing in payload"),400
     current_user_id = get_jwt_identity()
-    new_caimanera = Caimaneras(datetime, location, current_user_id)
+    new_caimanera = Caimaneras(name, datetime, location, current_user_id)
     creator_inscripciones = Inscripciones(new_caimanera.id, current_user_id)
     return (new_caimanera.serialize()),201
 
