@@ -103,7 +103,7 @@ export const Caimaneras = () => {
                                                 // o a lo mejor a una vista detallada de
                                                 // las caimaneras que ha creado para agregar
                                                 // invitaciones por correo?
-                                                return;
+                                                return //poner modal de caimanera creada
                                             }
                                             alert(
                                                 "something happened while creating"

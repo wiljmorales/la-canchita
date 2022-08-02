@@ -8,9 +8,7 @@ export const Demo = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<Fragment>
-			<GoogleMaps></GoogleMaps>
-		</Fragment>
+		<h2>hello world</h2>
 		
 	);
 };
