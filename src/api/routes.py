@@ -80,3 +80,20 @@ def create_caimanera():
     return (new_caimanera.serialize()),201
 
        # listo esta manguangua
+
+# metodo get para todas las caimaneras
+@api.route('/caimaneras', methods=['GET'])
+def caimanera_list():
+
+    caimanera = Caimaneras.query.all()
+    all_caimaneras = list(map(
+        lambda caimanera: caimanera.serialize(),caimanera)) 
+    
+    return jsonify(all_caimaneras), 200
+
+
+#Metodo single caimaneras
+@api.route('/caimaneras/<int:caimaneras_id>', methods=['GET'])
+def single_caimaneras(caimaneras_id):
+        single_caimaneras = Caimaneras.query.filter_by(id=caimaneras_id).one_or_none()
+        return jsonify(single_caimaneras.serialize()), 200
