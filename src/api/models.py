@@ -36,13 +36,15 @@ class Caimaneras(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
     datetime = db.Column(db.String(120), unique=False, nullable=False)
-    location = db.Column(db.String(120), unique=False, nullable=False)
+    longitud = db.Column(db.String(120), unique=False, nullable=False)
+    latitud = db.Column(db.String(120), unique=False, nullable=False)
     creator = db.Column(db.Integer, db.ForeignKey("user.id"))
 
-    def __init__(self, name, datetime, location, creator):
+    def __init__(self, name, datetime, longitud, latitud, creator):
         self.name = name
         self.datetime = datetime
-        self.location = location
+        self.latitud = latitud
+        self.longitud = longitud
         self.creator = creator
         db.session.add(self)
         db.session.commit()
@@ -52,7 +54,10 @@ class Caimaneras(db.Model):
 			"id":self.id,
             "name":self.name,
             "datetime":self.datetime,
-            "location":self.location,
+            "location":{
+                "lat": self.latitud,
+                "long": self.longitud
+            },
             "creator":self.creator}
 
 
