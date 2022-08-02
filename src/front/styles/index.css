@@ -3,7 +3,7 @@
 */
 .portrait-signup {
   background-image: url("https://img.freepik.com/vector-gratis/fondo-naranja-abstracto-lineas-efecto-semitono_1017-32107.jpg?t=st=1659070690~exp=1659071290~hmac=d03a57039b02505b5fdbd5be69fba151f2a1948dcdaa2a2a978430114b702a84");
-  background-size: contain;
+  background-size: 100%;
   width: auto;
   object-fit: contain;
   align-content: center;
