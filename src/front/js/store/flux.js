@@ -18,6 +18,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         latitude: undefined,
         longitude: undefined,
       },
+      caimaneras: {
+
+      }
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -40,6 +43,25 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("error", error);
           }
         );
+      },
+      getCaimaneras: async () => {
+				try {
+					const response = await fetch(
+            `${process.env.BACKEND_URL}/api/caimaneras`
+					);
+					const body = await response.json()
+					if (response.status !== 200) {
+						alert("No cargaron las canchas");
+						return;
+					}
+			  setStore({
+				caimaneras: body.results
+			  })
+        } catch (error) {
+          alert("algo malo paso")
+          console.log(error)
+        }
+    
       },
 
       signUp: async (requestBody) => {
