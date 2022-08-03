@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -27,13 +28,30 @@ export const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <div className="ml-auto">
-          <Link to="/sign-up">
-            <button className="btn btn-success me-5">Inscribete!</button>
-          </Link>
-          <Link to="/login">
-            <button className="btn btn-primary">Login</button>
-          </Link>
+        <div className="ml-auto d-flex">
+          <div className=" ms-2">
+            {localStorage.getItem("jwt-token") ? (
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  console.log("test");
+                  localStorage.removeItem("jwt-token");
+                  navigate("/login");
+                }}
+              >
+                Logout!
+              </button>
+            ) : (
+              <Link to="/login">
+                <button className="btn btn-primary">Login</button>
+              </Link>
+            )}
+          </div>
+          <div className="ms-2">
+            <Link to="/sign-up">
+              <button className="btn btn-success">Sign up!</button>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

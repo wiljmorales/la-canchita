@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Card = () => {
+export const Card = (item) => {
     return (
     <div className="tab-pane ps-2 pb-1 pt-2 pe-2" role="tabpanel" aria-labelledby="profile-tab" tabIndex="0">
         <div className="card border-warning" style={{width: "18rem"}}>
@@ -21,3 +22,7 @@ export const Card = () => {
     )
 
 } 
+
+Card.propTypes = {
+	item: PropTypes.object,
+};
