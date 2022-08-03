@@ -18,9 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         latitude: undefined,
         longitude: undefined,
       },
-      caimaneras: {
-
-      }
+      caimaneras: []
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -54,8 +52,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert("No cargaron las canchas");
 						return;
 					}
+//        const caimanera_list = [];
+//        for (let caimanera in body) {
+//          caimanera_list.push(caimanera)
+//        }
 			  setStore({
-				caimaneras: body.results
+				caimaneras: body
 			  })
         } catch (error) {
           alert("algo malo paso")
@@ -147,3 +149,5 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+
+

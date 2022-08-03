@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Jumbotron } from "../component/Jumbotron";
+import { Card } from "../component/Card";
 
 import "../../styles/home.css";
 
@@ -13,12 +14,12 @@ export const Home = () => {
 			<div className="d-flex flex-wrap w-100">
 					<h2 className="text-warning">Caimaneras</h2>
 					<div className="d-flex overflow-scroll">
-						{store.Caimaneras.map(
-							(caimaneras, item) => {
+						{store.caimaneras.map(
+							(caimanera) => {
 								return (
-								<Card 
-								key={caimaneras.id}
-								item={item} />
+									<Card 
+									key={caimanera.id}
+									item={caimanera} />
 								)
 							}
 						)}
