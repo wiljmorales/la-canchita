@@ -8,6 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    subscriptions = db.relationship('Inscripciones', back_populates='player')
 
     def __init__(self,name, email, password):
         self.name = name
@@ -39,6 +40,7 @@ class Caimaneras(db.Model):
     longitud = db.Column(db.String(120), unique=False, nullable=False)
     latitud = db.Column(db.String(120), unique=False, nullable=False)
     creator = db.Column(db.Integer, db.ForeignKey("user.id"))
+    subscribed = db.relationship('Inscripciones', back_populates='event')
 
     def __init__(self, name, datetime, longitud, latitud, creator):
         self.name = name
@@ -58,7 +60,11 @@ class Caimaneras(db.Model):
                 "lat": self.latitud,
                 "long": self.longitud
             },
-            "creator":self.creator}
+            "creator":self.creator,
+            "subscribed": list(map(
+                lambda s: s.serialize(), self.subscribed
+            ))
+            }
 
 
 
@@ -70,7 +76,9 @@ class Caimaneras(db.Model):
 class Inscripciones(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, db.ForeignKey("caimaneras.id"))
+    event = db.relationship('Caimaneras', back_populates='subscribed')
     player_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    player = db.relationship('User', back_populates='subscriptions')
 
     def __init__(self, event_id, player_id):
         self.event_id = event_id
