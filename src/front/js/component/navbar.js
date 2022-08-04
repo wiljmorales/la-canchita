@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container">
@@ -32,7 +33,7 @@ export const Navbar = () => {
           <div className=" ms-2">
             {localStorage.getItem("jwt-token") ? (
               <button
-                className="btn btn-primary"
+                className="btn btn-danger"
                 onClick={(e) => {
                   console.log("test");
                   localStorage.removeItem("jwt-token");
