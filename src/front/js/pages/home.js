@@ -12,23 +12,19 @@ export const Home = () => {
 		<div className="container">
 			<Jumbotron />
 			<div className="d-flex flex-wrap w-100">
-					<h2 className="text-warning">Caimaneras</h2>
-					<div className="d-flex overflow-scroll">
-						{store.caimaneras.map(
-							(caimanera) => {
-								return (
-									<Card 
-									key={caimanera.id}
-									item={caimanera} />
-								)
-							}
-						)}
-					</div>  
+				<h2 className="text-primary">Caimaneras</h2>
+				<div className="d-flex overflow-scroll">
+					{store.caimaneras.map(
+						(caimanera) => {
+							return (
+								<Card 
+								key={caimanera.id}
+								item={caimanera} />
+							)
+						}
+					)}
+				</div>  
 			</div>
-
 		</div>
-		
-	
-		
 	);
 };

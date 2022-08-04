@@ -15,7 +15,7 @@ export const SignUp = (props) => {
       style={{ height: "80vh" }}
     >
       <div
-        className="container fondocaimaneras flex-column d-flex align-items-center justify-content-around opacity-75 py-5 w-50 h-75"
+        className="container fondocaimaneras flex-column d-flex align-items-center justify-content-around bg-opacity-75 py-5 w-50 h-75"
         style={{ borderRadius: "25px" }}
       >
         <h2 className="text-white">Signup de jugador</h2>

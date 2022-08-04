@@ -14,7 +14,7 @@ export const Login = () => {
       style={{ height: "80vh" }}
     >
       <div
-        className="w-50 h-75 d-flex fondocaimaneras container flex-column align-items-center justify-content-around opacity-75 py-5"
+        className="w-50 h-75 d-flex fondocaimaneras container flex-column align-items-center justify-content-around bg-opacity-75 py-5"
         style={{ borderRadius: "25px" }}
       >
         <h2>Login de jugador</h2>
