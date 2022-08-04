@@ -97,3 +97,10 @@ def caimanera_list():
 def single_caimaneras(caimaneras_id):
         single_caimaneras = Caimaneras.query.filter_by(id=caimaneras_id).one_or_none()
         return jsonify(single_caimaneras.serialize()), 200
+
+@api.route('/subscribe/<int:caimanera_id>', methods=['POST'])
+@jwt_required()
+def subscribe(caimanera_id):
+    player = get_jwt_identity()
+    new_subscription = Inscripciones(caimanera_id, player)
+    return jsonify(new_subscription.serialize()), 201

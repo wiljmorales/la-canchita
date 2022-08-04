@@ -62,7 +62,7 @@ class Caimaneras(db.Model):
             },
             "creator":self.creator,
             "subscribed": list(map(
-                lambda s: s.serialize(), self.subscribed
+                lambda s: s.players(), self.subscribed
             ))
             }
 
@@ -91,4 +91,8 @@ class Inscripciones(db.Model):
             "event_id":self.event_id,
             "player_id":self.player_id
         }
-        
+    
+    def players(self): 
+        return {
+            "player_name": self.player.serialize()
+        }

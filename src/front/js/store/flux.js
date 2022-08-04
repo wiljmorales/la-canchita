@@ -18,12 +18,28 @@ const getState = ({ getStore, getActions, setStore }) => {
         latitude: undefined,
         longitude: undefined,
       },
-      caimaneras: []
+      caimaneras: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
         getActions().changeColor(0, "green");
+      },
+      subscribe: async (caimaneraId) => {
+        const token = localStorage.getItem("jwt-token");
+        const resp = await fetch(
+          `${process.env.BACKEND_URL}/api/subscribe/${caimaneraId}`,
+          {
+            method: "POST",
+            body: {},
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (resp.status !== 201) return false;
+        else return true;
       },
       getUserPosition: () => {
         navigator.geolocation.getCurrentPosition(
@@ -43,27 +59,26 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
       },
       getCaimaneras: async () => {
-				try {
-					const response = await fetch(
+        try {
+          const response = await fetch(
             `${process.env.BACKEND_URL}/api/caimaneras`
-					);
-					const body = await response.json()
-					if (response.status !== 200) {
-						alert("No cargaron las canchas");
-						return;
-					}
-//        const caimanera_list = [];
-//        for (let caimanera in body) {
-//          caimanera_list.push(caimanera)
-//        }
-			  setStore({
-				caimaneras: body
-			  })
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            alert("No cargaron las canchas");
+            return;
+          }
+          //        const caimanera_list = [];
+          //        for (let caimanera in body) {
+          //          caimanera_list.push(caimanera)
+          //        }
+          setStore({
+            caimaneras: body,
+          });
         } catch (error) {
-          alert("algo malo paso")
-          console.log(error)
+          alert("algo malo paso");
+          console.log(error);
         }
-    
       },
 
       signUp: async (requestBody) => {
@@ -149,5 +164,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-
-
