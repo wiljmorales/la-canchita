@@ -45,7 +45,7 @@ export const Login = () => {
               password: password,
             });
             if (success) {
-              navigate("/private");
+              navigate("/");
               return;
             }
             alert("something happened while creating");
