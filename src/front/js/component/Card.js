@@ -12,19 +12,19 @@ export const Card = ({ item }) => {
       aria-labelledby="profile-tab"
       tabIndex="0"
     >
-      <div className="card border-warning" style={{ width: "18rem" }}>
+      <div className="card border-success border-2" style={{ width: "18rem" }}>
         <img
           src={`https://www.diariodequeretaro.com.mx/incoming/yjs3qu-una-obra-mas.jpg/ALTERNATES/LANDSCAPE_768/UNA%20OBRA%20MAS.jpg`}
           className="card-img-top"
           alt="..."
         />
-        <div className="card-body bg-info">
+        <div className="card-body bg-primary">
           <h3 className="card-title text-white">{item.name}</h3>
           <p className="card-text text-white">{item.datetime}</p>
           <p className="card-text text-white">{item.creator}</p>
           <hr className="my-4" />
           <div className="container-fluid justify-content-between p-0 d-flex"></div>
-          <button
+          <button type="button" className="btn btn-light border-primary border-2 text-primary content-center"
             onClick={() => {
               const success = actions.subscribe(item.id);
               if (success) {
