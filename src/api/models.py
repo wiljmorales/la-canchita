@@ -9,6 +9,7 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     subscriptions = db.relationship('Inscripciones', back_populates='player')
+    caimaneras = db.relationship('Caimaneras', back_populates='creator')
 
     def __init__(self,name, email, password):
         self.name = name
@@ -39,15 +40,16 @@ class Caimaneras(db.Model):
     datetime = db.Column(db.String(120), unique=False, nullable=False)
     longitud = db.Column(db.String(120), unique=False, nullable=False)
     latitud = db.Column(db.String(120), unique=False, nullable=False)
-    creator = db.Column(db.Integer, db.ForeignKey("user.id"))
+    creator_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    creator = db.relationship('User', back_populates='caimaneras')
     subscribed = db.relationship('Inscripciones', back_populates='event')
 
-    def __init__(self, name, datetime, longitud, latitud, creator):
+    def __init__(self, name, datetime, longitud, latitud, creator_id):
         self.name = name
         self.datetime = datetime
         self.latitud = latitud
         self.longitud = longitud
-        self.creator = creator
+        self.creator_id = creator_id
         db.session.add(self)
         db.session.commit()
 
@@ -60,7 +62,7 @@ class Caimaneras(db.Model):
                 "lat": self.latitud,
                 "long": self.longitud
             },
-            "creator":self.creator,
+            "creator":self.creator.name,
             "subscribed": list(map(
                 lambda s: s.players(), self.subscribed
             ))
