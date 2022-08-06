@@ -22,7 +22,7 @@ export const Card = ({ item }) => {
           <h3 className="card-title text-white">{item.name}</h3>
           <p className="card-text text-white">{item.datetime}</p>
           <p className="card-text text-white">{item.creator}</p>
-          <hr className="my-4" />
+          <hr className="my-2" />
           <div className="container-fluid justify-content-between p-0 d-flex"></div>
           <button type="button" className="btn btn-light border-primary border-2 text-primary content-center"
             onClick={() => {
