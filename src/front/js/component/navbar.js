@@ -17,42 +17,33 @@ export const Navbar = () => {
             }}
           />
         </Link>
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row">
-          <li className="nav-item">
-            <Link to="/caimaneras" className="nav-link">
-              Crear Caimanera
-            </Link>
-          </li>
-          <li className="nav-item ms-4">
-            <Link to="/" className="nav-link">
-              Buscar Caimanera
-            </Link>
-          </li>
-        </ul>
         <div className="ml-auto d-flex">
-          <div className=" ms-2">
-            {localStorage.getItem("jwt-token") ? (
+          {localStorage.getItem("jwt-token") ? (
+            <>
               <button
-                className="btn btn-danger"
+                className="btn btn-danger me-5"
                 onClick={(e) => {
                   console.log("test");
                   localStorage.removeItem("jwt-token");
                   navigate("/login");
                 }}
               >
-                Logout!
+                {"Cerrar sesión"}
               </button>
-            ) : (
+              <button className="btn btn-warning">{"Mis Caimaneras"}</button>
+            </>
+          ) : (
+            <>
               <Link to="/login">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary me-5">
+                  {"Iniciar Sesión"}
+                </button>
               </Link>
-            )}
-          </div>
-          <div className="ms-2">
-            <Link to="/sign-up">
-              <button className="btn btn-success">Sign up!</button>
-            </Link>
-          </div>
+              <Link to="/sign-up">
+                <button className="btn btn-success">{"Registrase"}</button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
