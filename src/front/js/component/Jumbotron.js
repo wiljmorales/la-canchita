@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const Jumbotron = () => {
   const navigate = useNavigate();
   return (
-    <div className="container">
+    <div className="container mb-5">
       <div className="mt-4 p-5 bg-primary bg-gradient text-white rounded">
         <h1>Crea, Comparte y juega!</h1>
         <p>
