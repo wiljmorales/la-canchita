@@ -98,3 +98,10 @@ class Inscripciones(db.Model):
         return {
             "player_name": self.player.serialize()
         }
+
+    def caimanera_info(self): 
+        return {
+            "name": self.event.name,
+            "time": self.event.datetime[11:16],
+            "date": self.event.datetime[:10]
+        }
