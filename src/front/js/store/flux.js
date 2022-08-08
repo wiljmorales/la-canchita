@@ -66,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const body = await response.json();
           if (response.status !== 200) {
             alert("No cargaron las canchas");
-            return;
+            return true;
           }
           //        const caimanera_list = [];
           //        for (let caimanera in body) {
@@ -76,7 +76,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             caimaneras: body,
           });
         } catch (error) {
-          alert("algo malo paso");
           console.log(error);
         }
       },

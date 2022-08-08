@@ -9,11 +9,11 @@ export const Navbar = () => {
       <div className="container">
         <Link to="/">
           <img
-            src="https://i.ibb.co/MnhyZTD/logo-canchita.jpg"
+            src="https://i.imgur.com/gcEejdx.png"
             className="w-50 content-center"
             style={{
-              maxWidth: "300px",
-              maxHeight: "120px",
+              maxWidth: "400px",
+              maxHeight: "220px",
             }}
           />
         </Link>
@@ -40,7 +40,7 @@ export const Navbar = () => {
               <div
                 className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
