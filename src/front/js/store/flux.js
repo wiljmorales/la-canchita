@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         longitude: undefined,
       },
       caimaneras: [],
+      userCaimaneras: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -131,6 +132,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
         return true;
         // en caso de que sea necesario el single, se hace return de caimanera id
+      },
+      getSubscriptions: async () => {
+        const token = localStorage.getItem("jwt-token");
+        const resp = await fetch(`${process.env.BACKEND_URL}/api/suscription`, {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
+        const body = await resp.json();
+        setStore({
+          userCaimaneras: body,
+        });
       },
 
       getMessage: async () => {

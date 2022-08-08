@@ -105,9 +105,9 @@ def subscribe(caimanera_id):
     new_subscription = Inscripciones(caimanera_id, player)
     return jsonify(new_subscription.serialize()), 201
 
-@api.route('/suscription/', methods=['GET'])
+@api.route('/suscription', methods=['GET'])
 @jwt_required()
-def suscription(player_id):
+def suscription():
     player_id = get_jwt_identity()
     suscriptions = []
     for suscription in Inscripciones.query.filter_by(player_id=player_id):

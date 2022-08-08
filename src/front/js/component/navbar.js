@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const { store, actions } = useContext(Context);
+  // const [caimaneras, setCaimaneras] = useState([]);
+
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container">
@@ -34,13 +38,14 @@ export const Navbar = () => {
                 className="btn btn-warning"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
+                onClick={actions.getSubscriptions}
               >
                 {"Mis Caimaneras"}
               </button>
               <div
                 className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
@@ -57,7 +62,28 @@ export const Navbar = () => {
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div className="modal-body">...</div>
+                    <div className="modal-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {store.userCaimaneras.map((caimanera) => {
+                            return (
+                              <tr>
+                                <td>{caimanera.name}</td>
+                                <td>{caimanera.time}</td>
+                                <td>{caimanera.date}</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                     <div className="modal-footer">
                       <button
                         type="button"
@@ -67,7 +93,7 @@ export const Navbar = () => {
                         Close
                       </button>
                       <button type="button" className="btn btn-primary">
-                        Save changes
+                        Mostrar
                       </button>
                     </div>
                   </div>

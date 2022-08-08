@@ -11,7 +11,7 @@ export const Home = () => {
 
   useEffect(() => {
     actions.getCaimaneras();
-  }, [store.caimaneras]);
+  }, []);
 
   return (
     <div className="container">
