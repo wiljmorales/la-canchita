@@ -18,7 +18,7 @@ export const Headline = () => {
                 </div>
                 <div className="col-6">
                 <img
-                src={`https://img.freepik.com/foto-gratis/cerrar-hombre-escribiendo-codigo-computadora-portatil_158595-5169.jpg?w=826&t=st=1659722620~exp=1659723220~hmac=8c49caafe9d89a091d42113806bfa46a4161b7023b4b4db837f66603a921f233`}
+                src={`https://i.imgur.com/ztMk46E.png`}
                 className="rounded-3 h-100 w-100"
                 alt="..."
                 />

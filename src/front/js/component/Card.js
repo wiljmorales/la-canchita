@@ -2,9 +2,17 @@ import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import Datetime from "react-datetime";
+import { GoogleMaps } from "../component/GoogleMap";
+import {Marker} from "../pages/Marker";
+
 
 export const Card = ({ item }) => {
   const { store, actions } = useContext(Context);
+  const [LatLong, setLatLong] = useState({
+    lat: Number.parseFloat(store.caimaneras.latitud),
+    long: Number.parseFloat(store.caimaneras.longitud),
+});
   return (
     <div
       className="tab-pane ps-2 pb-1 pt-2 pe-2 w-25"
@@ -22,7 +30,7 @@ export const Card = ({ item }) => {
           <h3 className="card-title text-white">{item.name}</h3>
           <p className="card-text text-white">{item.datetime}</p>
           <p className="card-text text-white">{item.creator}</p>
-          <hr className="my-4" />
+          <hr className="my-2" />
           <div className="container-fluid justify-content-between p-0 d-flex"></div>
           <button
             type="button"
@@ -39,11 +47,80 @@ export const Card = ({ item }) => {
             Subscribirse
           </button>
           <button
-            type="button"
-            className="btn btn-light border-primary border-2 text-primary content-center"
-          >
-            {"Mas Info"}
-          </button>
+                className="btn btn-primary text-white"
+                data-bs-toggle="modal"
+                data-bs-target="#homeModal"
+              >
+                {"Mas info"}
+              </button>
+              <div
+                className="modal fade"
+                id="homeModal"
+                tabIndex="-1"
+                aria-labelledby="homeModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="homeModalLabel">
+                      {item.name}
+                      </h5>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      <p className="card-text text-white">{item.datetime}</p>
+                      <p className="card-text text-white">{item.creator}</p>
+                      <div className="d-flex flex-nowrap w-100">
+                                        {store.userPosition.latitude && (
+                                            <GoogleMaps
+                                                center={{
+                                                    lat: store.userPosition
+                                                        .latitude,
+                                                    lng: store.userPosition
+                                                        .longitude,
+                                                }}
+                                                zoom={12}
+                                                clickHandler={() => {}}
+                                                style={{
+                                                    margin: "0 0 1.5rem 0",
+                                                }}
+                                            >
+                                                <Marker
+                                                    draggable={false}
+                                                    position={{
+                                                      lat: store.caimaneras
+                                                          .latitude,
+                                                      lng: store.caimaneras
+                                                          .longitude,
+                                                  }}
+                                                    dragHandler={() => {}}
+                                                />
+                                            </GoogleMaps>
+                                        )}
+                                    </div>
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="button" className="btn btn-primary">
+                        Save changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
         </div>
       </div>
     </div>
