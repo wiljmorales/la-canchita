@@ -59,7 +59,7 @@ export const Card = ({ item }) => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="homeModalLabel">
-                    {item.name}
+                    {item.name} 
                   </h5>
                   <button
                     type="button"
@@ -69,8 +69,8 @@ export const Card = ({ item }) => {
                   ></button>
                 </div>
                 <div className="modal-body">
-                  <p className="card-text text-white">{item.datetime}</p>
-                  <p className="card-text text-white">{item.creator}</p>
+                  <p className="card-text text-black">{item.datetime}</p>
+                  <p className="card-text text-black">{item.creator}</p>
                   <div className="d-flex flex-nowrap w-100">
                     <GoogleMaps
                       center={{
