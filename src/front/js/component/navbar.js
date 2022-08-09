@@ -63,7 +63,7 @@ export const Navbar = () => {
                       ></button>
                     </div>
                     <div className="modal-body">
-                      <table class="table">
+                      <table className="table">
                         <thead>
                           <tr>
                             <th scope="col">First</th>

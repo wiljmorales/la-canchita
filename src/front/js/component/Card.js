@@ -45,13 +45,13 @@ export const Card = ({ item }) => {
           <button
             className="btn btn-primary text-white"
             data-bs-toggle="modal"
-            data-bs-target="#homeModal"
+            data-bs-target={`#${item.name}`}
           >
             {"Mas info"}
           </button>
           <div
             className="modal fade"
-            id="homeModal"
+            id={item.name}
             tabIndex="-1"
             aria-labelledby="homeModalLabel"
             aria-hidden="true"
