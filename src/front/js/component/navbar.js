@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
@@ -6,7 +6,10 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
-  // const [caimaneras, setCaimaneras] = useState([]);
+
+  useEffect(() => {
+    actions.getSubscriptions();
+  }, [store.userCaimaneras]);
 
   return (
     <nav className="navbar navbar-light bg-light">
@@ -85,7 +88,6 @@ export const Navbar = () => {
                                   onClick={() => {
                                     actions.unsubscribe(caimanera.id);
                                   }}
-                                  data-bs-dismiss="modal"
                                 >
                                   Desubscribirse
                                 </td>
