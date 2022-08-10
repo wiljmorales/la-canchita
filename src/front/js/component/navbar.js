@@ -84,8 +84,8 @@ export const Navbar = () => {
                                   style={{ cursor: "pointer" }}
                                   onClick={() => {
                                     actions.unsubscribe(caimanera.id);
-                                    actions.getSubscriptions();
                                   }}
+                                  data-bs-dismiss="modal"
                                 >
                                   Desubscribirse
                                 </td>
@@ -102,9 +102,6 @@ export const Navbar = () => {
                         data-bs-dismiss="modal"
                       >
                         Close
-                      </button>
-                      <button type="button" className="btn btn-primary">
-                        Mostrar
                       </button>
                     </div>
                   </div>
