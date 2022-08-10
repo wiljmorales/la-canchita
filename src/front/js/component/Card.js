@@ -27,20 +27,24 @@ export const Card = ({ item }) => {
           <p className="card-text text-white">{item.creator}</p>
           <hr className="my-2" />
           <div className="container-fluid justify-content-between p-0 d-flex"></div>
-          <button
-            type="button"
-            className="btn btn-light border-primary border-2 text-primary content-center"
-            onClick={() => {
-              const success = actions.subscribe(item.id);
-              if (success) {
-                alert("te inscribiste");
-              } else {
-                alert("no te pudiste inscribir");
-              }
-            }}
-          >
-            Subscribirse
-          </button>
+          {store.userCaimaneras.find(
+            (caimanera) => caimanera.id === item.id
+          ) === undefined && (
+            <button
+              type="button"
+              className="btn btn-light border-primary border-2 text-primary content-center"
+              onClick={() => {
+                const success = actions.subscribe(item.id);
+                if (success) {
+                  alert("te inscribiste");
+                } else {
+                  alert("no te pudiste inscribir");
+                }
+              }}
+            >
+              Subscribirse
+            </button>
+          )}
           <button
             className="btn btn-primary text-white"
             data-bs-toggle="modal"

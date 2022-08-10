@@ -8,7 +8,9 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getSubscriptions();
+    if (localStorage.getItem("jwt-token")) {
+      actions.getSubscriptions();
+    }
   }, [store.userCaimaneras]);
 
   return (
