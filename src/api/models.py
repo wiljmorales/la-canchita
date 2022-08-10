@@ -94,6 +94,17 @@ class Inscripciones(db.Model):
             "player_id":self.player_id
         }
     
+    def delete(self):
+        """ borra la instancia de la base de datos """
+        db.session.delete(self)
+        try:
+            db.session.commit()
+            print(self)
+            return True
+        except Exception as error:
+            print(error.args)
+            return False
+    
     def players(self): 
         return {
             "player_name": self.player.serialize()
@@ -103,5 +114,6 @@ class Inscripciones(db.Model):
         return {
             "name": self.event.name,
             "time": self.event.datetime[11:16],
-            "date": self.event.datetime[:10]
+            "date": self.event.datetime[:10],
+            "id": self.event.id
         }

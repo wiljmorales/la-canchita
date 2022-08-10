@@ -42,6 +42,22 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (resp.status !== 201) return false;
         else return true;
       },
+      unsubscribe: async (caimaneraId) => {
+        const token = localStorage.getItem("jwt-token");
+        const resp = await fetch(
+          `${process.env.BACKEND_URL}/api/subscribe/${caimaneraId}`,
+          {
+            method: "DELETE",
+            body: {},
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (resp.status !== 204) return false;
+        else return true;
+      },
       getUserPosition: () => {
         navigator.geolocation.getCurrentPosition(
           function (position) {

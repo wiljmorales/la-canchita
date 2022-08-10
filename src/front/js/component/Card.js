@@ -6,7 +6,6 @@ import Datetime from "react-datetime";
 import { GoogleMaps } from "../component/GoogleMap";
 import { Marker } from "../pages/Marker";
 
-
 export const Card = ({ item }) => {
   const { store, actions } = useContext(Context);
   return (
@@ -45,23 +44,22 @@ export const Card = ({ item }) => {
           <button
             className="btn btn-primary text-white"
             data-bs-toggle="modal"
-            data-bs-target={`#${item.name}`}
+            data-bs-target={`#${item.name.split(" ").join("")}`}
           >
             {"Mas info"}
           </button>
           <div
             className="modal fade"
-            id={item.name}
+            id={item.name.split(" ").join("")}
             tabIndex="-1"
             aria-labelledby="homeModalLabel"
             aria-hidden="true"
-            
           >
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="homeModalLabel">
-                    {item.name} 
+                    {item.name}
                   </h5>
                   <button
                     type="button"
@@ -71,8 +69,12 @@ export const Card = ({ item }) => {
                   ></button>
                 </div>
                 <div className="modal-body">
-                  <p className="card-text text-black">Fecha y hora: {item.datetime}</p>
-                  <p className="card-text text-black">Creador: {item.creator}</p>
+                  <p className="card-text text-black">
+                    Fecha y hora: {item.datetime}
+                  </p>
+                  <p className="card-text text-black">
+                    Creador: {item.creator}
+                  </p>
                   <div className="d-flex flex-nowrap w-100">
                     <GoogleMaps
                       center={{

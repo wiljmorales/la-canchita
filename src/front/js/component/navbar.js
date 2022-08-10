@@ -66,18 +66,29 @@ export const Navbar = () => {
                       <table className="table">
                         <thead>
                           <tr>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Fecha</th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
                           {store.userCaimaneras.map((caimanera) => {
                             return (
-                              <tr>
+                              <tr key={caimanera.id}>
                                 <td>{caimanera.name}</td>
                                 <td>{caimanera.time}</td>
                                 <td>{caimanera.date}</td>
+                                <td
+                                  className="text-danger"
+                                  style={{ cursor: "pointer" }}
+                                  onClick={() => {
+                                    actions.unsubscribe(caimanera.id);
+                                    actions.getSubscriptions();
+                                  }}
+                                >
+                                  Desubscribirse
+                                </td>
                               </tr>
                             );
                           })}
