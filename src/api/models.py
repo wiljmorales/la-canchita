@@ -107,7 +107,8 @@ class Inscripciones(db.Model):
     
     def players(self): 
         return {
-            "player_name": self.player.serialize()
+            "name": self.player.name,
+            "email": self.player.email
         }
 
     def caimanera_info(self): 

@@ -11,7 +11,7 @@ export const Navbar = () => {
     if (localStorage.getItem("jwt-token")) {
       actions.getSubscriptions();
     }
-  }, [store.userCaimaneras]);
+  }, [store.userCaimaneras.length]);
 
   return (
     <nav className="navbar navbar-light bg-light">
@@ -90,6 +90,7 @@ export const Navbar = () => {
                                   onClick={() => {
                                     actions.unsubscribe(caimanera.id);
                                   }}
+                                  // data-bs-dismiss="modal"
                                 >
                                   Desubscribirse
                                 </td>

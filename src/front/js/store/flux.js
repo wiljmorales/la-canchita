@@ -44,6 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       unsubscribe: async (caimaneraId) => {
         const token = localStorage.getItem("jwt-token");
+        const store = getStore();
         const resp = await fetch(
           `${process.env.BACKEND_URL}/api/subscribe/${caimaneraId}`,
           {
@@ -55,8 +56,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           }
         );
+        const newUserCaimaneras = store.userCaimaneras.filter(
+          (caimanera) => caimanera.id != caimaneraId
+        );
+        setStore({
+          ...store,
+          userCaimaneras: newUserCaimaneras,
+        });
         if (resp.status !== 204) return false;
-        else return true;
       },
       getUserPosition: () => {
         navigator.geolocation.getCurrentPosition(
