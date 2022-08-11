@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { GoogleMaps } from "../component/GoogleMap";
 import { Marker } from "../pages/Marker";
+import { SubscribeButton } from "./SubscribeButton";
 
 export const Card = ({ item }) => {
   const { store, actions } = useContext(Context);
@@ -28,22 +29,10 @@ export const Card = ({ item }) => {
           <p className="card-text text-white">Creado por {item.creator}</p>
           <hr className="my-2" />
           <div className="container-fluid justify-content-between p-0 d-flex"></div>
-          <button
-            type="button"
-            className="btn btn-light border-primary border-2 text-primary content-center"
-            onClick={() => {
-              if (localStorage.getItem("jwt-token")) {
-                const success = actions.subscribe(item.id);
-                if (success) {
-                  alert("te inscribiste");
-                } else {
-                  alert("no te pudiste inscribir");
-                }
-              } else navigate("/login");
-            }}
-          >
-            Subscribirse
-          </button>
+          <SubscribeButton
+            caimaneraId={item.id}
+            buttonStyle={"btn-light border-primary border-2 text-primary"}
+          />
           <button
             className="btn btn-primary text-white"
             data-bs-toggle="modal"
@@ -137,9 +126,10 @@ export const Card = ({ item }) => {
                   >
                     Close
                   </button>
-                  <button type="button" className="btn btn-primary">
-                    Save changes
-                  </button>
+                  <SubscribeButton
+                    caimaneraId={item.id}
+                    buttonStyle={"btn-primary text-white"}
+                  />
                 </div>
               </div>
             </div>
