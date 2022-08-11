@@ -57,7 +57,8 @@ class Caimaneras(db.Model):
         return {
 			"id":self.id,
             "name":self.name,
-            "datetime":self.datetime,
+            "time": self.datetime[11:16],
+            "date": self.datetime[:10],
             "location":{
                 "lat": self.latitud,
                 "long": self.longitud
@@ -108,7 +109,8 @@ class Inscripciones(db.Model):
     def players(self): 
         return {
             "name": self.player.name,
-            "email": self.player.email
+            "email": self.player.email,
+            "id": self.player.id
         }
 
     def caimanera_info(self): 

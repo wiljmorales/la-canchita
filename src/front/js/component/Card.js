@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Datetime from "react-datetime";
 import { GoogleMaps } from "../component/GoogleMap";
 import { Marker } from "../pages/Marker";
 
@@ -24,8 +23,9 @@ export const Card = ({ item }) => {
         />
         <div className="card-body bg-primary">
           <h3 className="card-title text-white">{item.name}</h3>
-          <p className="card-text text-white">{item.datetime}</p>
-          <p className="card-text text-white">{item.creator}</p>
+          <p className="card-text text-white">Fecha: {item.date}</p>
+          <p className="card-text text-white">Hora: {item.time}</p>
+          <p className="card-text text-white">Creado por {item.creator}</p>
           <hr className="my-2" />
           <div className="container-fluid justify-content-between p-0 d-flex"></div>
           <button
@@ -72,12 +72,13 @@ export const Card = ({ item }) => {
                   ></button>
                 </div>
                 <div className="modal-body">
-                  <p className="card-text text-black">
-                    Fecha y hora: {item.datetime}
-                  </p>
-                  <p className="card-text text-black">
-                    Creador: {item.creator}
-                  </p>
+                  <div className="d-flex justify-content-between">
+                    <p className="card-text text-black">Fecha: {item.date}</p>
+                    <p className="card-text text-black">Hora: {item.time}</p>
+                    <p className="card-text text-black">
+                      Creador: {item.creator}
+                    </p>
+                  </div>
                   <div className="d-flex flex-nowrap w-100">
                     <GoogleMaps
                       center={{
@@ -100,6 +101,33 @@ export const Card = ({ item }) => {
                       />
                     </GoogleMaps>
                   </div>
+                  {item.subscribed.length > 0 ? (
+                    <>
+                      <h3 className="text-center">Jugadores Inscritos</h3>
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {item.subscribed.map((suscriptor) => {
+                            return (
+                              <tr key={suscriptor.id}>
+                                <td>{suscriptor.name}</td>
+                                <td>{suscriptor.email}</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </>
+                  ) : (
+                    <h3 className="text-center">
+                      Se el primero en inscribirte
+                    </h3>
+                  )}
                 </div>
                 <div className="modal-footer">
                   <button
