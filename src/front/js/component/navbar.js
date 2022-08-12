@@ -7,12 +7,6 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
 
-  useEffect(() => {
-    if (localStorage.getItem("jwt-token")) {
-      actions.getSubscriptions();
-    }
-  }, [store.userCaimaneras.length]);
-
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container">
