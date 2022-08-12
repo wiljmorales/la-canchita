@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { GoogleMaps } from "../component/GoogleMap";
 import { Marker } from "../pages/Marker";
 import { SubscribeButton } from "./SubscribeButton";
+import { UnsubscribeButton } from "./UnsubscribeButton";
 
 export const Card = ({ item }) => {
   const { store, actions } = useContext(Context);
-  const navigate = useNavigate();
   return (
     <div
       className="tab-pane ps-2 pb-1 pt-2 pe-2 w-25"
@@ -29,10 +28,23 @@ export const Card = ({ item }) => {
           <p className="card-text text-white">Creado por {item.creator}</p>
           <hr className="my-2" />
           <div className="container-fluid justify-content-between p-0 d-flex"></div>
-          <SubscribeButton
-            caimaneraId={item.id}
-            buttonStyle={"btn-light border-primary border-2 text-primary"}
-          />
+          {localStorage.getItem("jwt-token") ? (
+            store.userCaimaneras.find(
+              (caimanera) => caimanera.id === item.id
+            ) ? (
+              <UnsubscribeButton caimaneraId={item.id} />
+            ) : (
+              <SubscribeButton
+                caimaneraId={item.id}
+                buttonStyle={"btn-light border-primary border-2 text-primary"}
+              />
+            )
+          ) : (
+            <SubscribeButton
+              caimaneraId={item.id}
+              buttonStyle={"btn-light border-primary border-2 text-primary"}
+            />
+          )}
           <button
             className="btn btn-primary text-white"
             data-bs-toggle="modal"
@@ -126,10 +138,23 @@ export const Card = ({ item }) => {
                   >
                     Close
                   </button>
-                  <SubscribeButton
-                    caimaneraId={item.id}
-                    buttonStyle={"btn-primary text-white"}
-                  />
+                  {localStorage.getItem("jwt-token") ? (
+                    store.userCaimaneras.find(
+                      (caimanera) => caimanera.id === item.id
+                    ) ? (
+                      <UnsubscribeButton caimaneraId={item.id} />
+                    ) : (
+                      <SubscribeButton
+                        caimaneraId={item.id}
+                        buttonStyle={"btn-primary text-white"}
+                      />
+                    )
+                  ) : (
+                    <SubscribeButton
+                      caimaneraId={item.id}
+                      buttonStyle={"btn-primary text-white"}
+                    />
+                  )}
                 </div>
               </div>
             </div>

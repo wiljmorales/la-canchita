@@ -28,6 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       subscribe: async (caimaneraId) => {
         const token = localStorage.getItem("jwt-token");
+        const store = getStore();
         const resp = await fetch(
           `${process.env.BACKEND_URL}/api/subscribe/${caimaneraId}`,
           {
@@ -39,8 +40,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           }
         );
+
         if (resp.status !== 201) return false;
-        else return true;
+        // const newSusbcription = [...store.userCaimaneras, "new subscription"];
+        // setStore({
+        //   ...store,
+        //   userCaimaneras: newSusbcription,
+        // });
+        getActions().getSubscriptions();
       },
       unsubscribe: async (caimaneraId) => {
         const token = localStorage.getItem("jwt-token");

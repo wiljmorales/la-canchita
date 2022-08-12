@@ -11,7 +11,10 @@ export const Home = () => {
 
   useEffect(() => {
     actions.getCaimaneras();
-  }, []);
+    if (localStorage.getItem("jwt-token")) {
+      actions.getSubscriptions();
+    }
+  }, [store.userCaimaneras.length]);
 
   return (
     <div className="container">

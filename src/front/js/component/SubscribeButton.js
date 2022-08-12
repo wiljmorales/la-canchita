@@ -11,12 +11,7 @@ export const SubscribeButton = ({ caimaneraId, buttonStyle }) => {
       className={`btn ${buttonStyle} content-center`}
       onClick={() => {
         if (localStorage.getItem("jwt-token")) {
-          const success = actions.subscribe(caimaneraId);
-          if (success) {
-            alert("te inscribiste");
-          } else {
-            alert("no te pudiste inscribir");
-          }
+          actions.subscribe(caimaneraId);
         } else navigate("/login");
       }}
     >
